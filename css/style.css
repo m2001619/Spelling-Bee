@@ -1,0 +1,238 @@
+/* Start Global Rules */
+:root {
+    --main-color : #e6e6e6;
+    --secondory-color : #f7da21;
+    --shapes-color : #dcdcdc;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Libre Franklin', sans-serif;
+}
+@media (min-width: 768px) {
+    .spelling-bee {
+        height: 100vh;
+    }
+    .container {
+        height: calc(100% - 109px);
+    }
+}
+@media (max-width: 767px) {
+    .container {
+        max-width: 100%;
+    }
+}
+/* End Global Rules */
+/* Start Header */
+header {
+    padding: 10px 20px;
+    border-bottom: 2px solid var(--main-color);
+}
+header>h1 {
+    font-size: 35px;
+    font-family: cursive;
+}
+/* End Header */
+/* Start Input */
+.input .text-filed::after {
+    content: '';
+    height: 100%;
+    width: 2px;
+    position: absolute;
+    right: -5px;
+    background-color: var(--secondory-color);
+    animation: cursor 1s infinite;
+    -webkit-animation: cursor 1s infinite;
+}
+.input .text-filed>span.import-letter {
+    color: var(--secondory-color);
+}
+.input .text-filed>span.not-from-letter {
+    color: var(--shapes-color);
+}
+.input .hexagons {
+    width: max-content;
+    grid-template-columns: repeat(10,1fr);
+    grid-template-rows: repeat(6,1fr);
+}
+.input .hexagons>svg {
+    position: relative;
+    width: 120px;
+}
+.input .hexagons>svg:hover {
+    cursor: pointer;
+}
+.input .hexagons>svg>text {
+    font-size: 30px;
+    font-weight: 700;
+    text-anchor: middle;
+    text-transform: uppercase;
+}
+.input svg:nth-child(1) {
+    grid-column: 4/8;
+    grid-row: 1/3;
+}   
+.input svg:nth-child(2) {
+    grid-column: 1/5;
+    grid-row: 2/4;
+}   
+.input svg:nth-child(3) {
+    grid-column: 4/8;
+    grid-row: 3/5;
+}   
+.input svg:nth-child(4) {
+    grid-column: 7/11;
+    grid-row: 2/4;
+}   
+.input svg:nth-child(5) {
+    grid-column: 1/5;
+    grid-row: 4/6;
+}   
+.input svg:nth-child(6) {
+    grid-column: 4/8;
+    grid-row: 5/7;
+}   
+.input svg:nth-child(7) {
+    grid-column: 7/11;
+    grid-row: 4/6;
+}
+.input svg>polygon {
+    fill: var(--main-color);
+}
+.input svg:nth-child(3)>polygon {
+    fill: var(--secondory-color);
+}
+.input .buttons>button {
+    background: #fff;
+    font-size: 15px;
+    border: 1px solid var(--main-color);
+    padding: 12px 22px;
+    box-shadow: inset 0px 0px 1px 0px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+}
+.input .buttons>button:active {
+    background-color: var(--main-color);
+}
+/* End Input */
+
+/* Start Output */
+.output {
+    width: max-content;
+}
+@media (min-width: 768px) {
+    .output {
+        width: 50%;
+    }
+}
+@media (max-width: 767px) {
+    .output {
+        width: 100%;
+    }
+}
+.output .circle {
+    z-index: 1;
+    width: 10px;
+    height: 10px;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.output .range-line .line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--shapes-color);
+    z-index: 0;
+}
+.output .range-line .square {
+    width: 10px;
+    height: 10px;
+    background-color: var(--shapes-color);
+    z-index: 1;
+}
+.output .range-line .active {
+    background-color: var(--secondory-color);
+}
+.output .range-line .active-level {
+    width: 28px;
+    height: 28px;
+    background-color: #f7da21;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.output .range-line .active-level::before {
+    content: attr(score);
+    position: absolute;
+    font-size: 11px;
+}
+.output .textarea {
+    border: 1px solid var(--main-color);
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+@media (min-width: 768px) {
+    .output .textarea {
+        height: 100%;
+        overflow-y: scroll;
+    }
+    .output .textarea::-webkit-scrollbar {
+        width: 2px;
+    }
+    .output .textarea::-webkit-scrollbar-thumb {
+        background-color: var(--main-color);
+        border-radius: 10px;
+        height: 5px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+}
+    .output .textarea::-webkit-scrollbar-track {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+.output .angle:hover {
+    cursor: pointer;
+}
+.output .textarea .answers {
+    padding-top: 10px;
+    transition: display 1s linear;
+}
+.output .textarea .answers>p {
+    position: relative;
+    width: 30%;
+}
+.output .textarea .answers>p::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: var(--shapes-color);
+    bottom: -3px;
+}
+/* End Output */
+
+/* Start Animation  */
+@keyframes cursor {
+    0% {background-color: var(--secondory-color);}
+    60% {background-color: var(--secondory-color);}
+    99% {background-color: transparent;}
+    100%{background-color: var(--secondory-color);}
+}
+/* End Animation */
