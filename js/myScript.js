@@ -4,7 +4,8 @@ let angleCheck = false;
 let input = document.querySelector(".input");
 let textFiled = document.querySelector(".input .text-filed");
 let angle = document.querySelector(".angle");
-let hexagons = document.querySelectorAll(".hexagons polygon");
+let polygon = document.querySelectorAll(".hexagons polygon");
+let hexagons = document.querySelectorAll("svg");
 let hexagonTexts = document.querySelectorAll(".hexagons text");
 let delet = document.querySelector(".delete");
 let shuffle = document.querySelector(".shuffle");
@@ -21,6 +22,7 @@ let pangramWords = [];
 let score = 0;
 let appendAnswers = [];
 let appendScore = 0;
+let check = false;
 playGame();
 console.log(answerWords);
 
@@ -46,25 +48,25 @@ angle.onclick = function() {
 
 hexagons.forEach(function(e,i){
     e.onclick = function() {
-        /* Styling hexagons */
-        e.setAttribute("points","10,51.96152422706631 30,10 90,10 110,51.96152422706631 90,93.92304845413263 30,93.92304845413263");
-        if(i !== 2) {
-            e.style.fill = "#dcdcdc";
-        }
-        setTimeout(function(){
-            e.setAttribute("points","0,51.96152422706631 30,0 90,0 120,51.96152422706631 90,103.92304845413263 30,103.92304845413263");
-            if(i !== 2) {
-                e.style.fill = "#e6e6e6";
-            }
-        },100);
-
+        console.log(i);
         /* Append Letters in Text */
         let text = document.createElement(`span`);
         text.textContent = sevenLetters[i].toLocaleUpperCase();
         text.classList.add("fw-bold","fs-3");
         if(i == 2)
-            text.classList.add("import-letter");
+        text.classList.add("import-letter");
         textFiled.appendChild(text);
+        /* Styling hexagons */
+        polygon[i].setAttribute("points","10,51.96152422706631 30,10 90,10 110,51.96152422706631 90,93.92304845413263 30,93.92304845413263");
+        if(i !== 2) {
+            polygon[i].style.fill = "#dcdcdc";
+        }
+        setTimeout(function(){
+            polygon[i].setAttribute("points","0,51.96152422706631 30,0 90,0 120,51.96152422706631 90,103.92304845413263 30,103.92304845413263");
+            if(i !== 2) {
+                polygon[i].style.fill = "#e6e6e6";
+            }
+        },100);
     }
 })
 
@@ -221,11 +223,10 @@ function readFile(path) {
             localStorage.setItem(`dic`,Object.keys(JSON.parse(file.responseText)));
         }
     }
-    //console.log(dictionary);
     if(localStorage.getItem(`dic`)){
     dictionary = localStorage.getItem(`dic`).split(`,`);
     }else {
-        window.location.reload(false);
+        errorAlert("please, Refresh the page again");
     }
     localStorage.removeItem(`dic`);
     return dictionary;
